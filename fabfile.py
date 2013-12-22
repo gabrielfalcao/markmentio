@@ -35,7 +35,7 @@ def create():
     sudo('echo "HRNGDEVICE=/dev/urandom" >> /etc/default/rng-tools')
     sudo("dpkg-reconfigure rng-tools")
 
-    sudo("(test -e /srv && rm -rf /srv/)")
+    sudo("(test -e /srv && rm -rf /srv/ || echo)")
     sudo("rm -rf /srv/markment-io")
     sudo("rm -rf /var/log/markment-io")
     sudo("mkdir -p /var/log/markment-io")
