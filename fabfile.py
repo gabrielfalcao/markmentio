@@ -68,9 +68,7 @@ def deploy():
     run("cd /srv/markment-io && git clean -df")
     run("cd /srv/markment-io && git pull")
 
-    run("/srv/venv/bin/pip uninstall -y -q curdling || echo")
-    run("/srv/venv/bin/pip install -q curdling")
-    run("/srv/venv/bin/curd install -r /srv/markment-io/requirements.txt")
+    run("/srv/venv/bin/pip install -r /srv/markment-io/requirements.txt")
     sudo("service supervisor stop")
     sudo("(ps aux | egrep python | grep -v grep | awk '{ print $2 }' | xargs kill -9 2>&1>/dev/null) 2>&1>/dev/null || echo")
     sudo("service supervisor start")
