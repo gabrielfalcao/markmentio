@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+{% endblock %}
+{% block main %}
+<div class="main uk-grid uk-alert ">
+  <div class="uk-width-1-1">
+    <article class="uk-article uk-container uk-container-center uk-text-center">
+      <h1 class="uk-article-title"><i class="uk-icon-lock uk-icon-medium"> &nbsp; </i></h1>
+      <h1 class="uk-article-title">Only for Yipisters</h1>
+      <div class="uk-thumbnail ">
+        <img class="uk-img-preserve" src="{{ github_user.avatar_url }}" alt="{{ github_user.login }}" />
+      </div>
+      <h1 class="uk-text-success">Hello {{ github_user.login }}</h1>
+      <h2 class="uk-text-danger">
+        It looks like you should not be here.
+      </h2>
+  </div>
+    </article>
+</div>
+</div>
+{% endblock %}

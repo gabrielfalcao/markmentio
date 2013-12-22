@@ -1,0 +1,34 @@
+{% raw %}
+<div class="uk-grid sidebar-parent">
+  <div class="uk-width-1-6" ng-show="tracked_repositories">
+    <h3>Choose a tracked repository:</h3>
+    <div class="sidebar">
+      <ul class="nav">
+        <li data-full-name="{{ repository.full_name }}" class="live-stats-repository animate-repeat" ng-repeat="repository in tracked_repositories">
+          <a ng-click="liveMonitorProject(repository)" href="#stats-{{ repository.name }}">{{ repository.full_name }}</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="uk-width-5-6 animate-if" ng-show="tracked_repositories">
+    <div class="uk-grid live-stats">
+      <div class="uk-width-1-2">
+        <div ng-model="visitors" class="ng-cloak left">
+          <h1>{{ visitors.repository.full_name }}</h1>
+        </div>
+      </div>
+      <div class="uk-width-1-2">
+        <div ng-model="visitors" class="ng-cloak right">
+          <h2 id="overall">Total visitors: {{ visitors.total }}</h2>
+          <h2 id="overall">Unique visitors: {{ visitors.unique_total }}</h2>
+          <h3 id="forks"><i class="uk-icon-github">&nbsp;</i>Forks: {{ visitors.repository.forks }}</h3>
+          <h3 id="watchers"><i class="uk-icon-github-alt">&nbsp;</i>Watchers: {{ visitors.repository.watchers }}</h3>
+        </div>
+      </div>
+    </div>
+    {% endraw %}{% include "dashboard/map.svg" %}{% raw %}
+  </div>
+  <h1 ng-hide="tracked_repositories">There are no tracked repositories</h1>
+</div>
+{% endraw %}

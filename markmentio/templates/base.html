@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="markmentio">
+  <head>
+    <meta charset="UTF-8">
+    <title>Markment.IO</title>
+    <meta name="robots" content="noindex">
+    <meta name="google-site-verification" content="kSIvUEvvttuo56hQ7f3nDkNppB-BhuiojDz4cdZhXn4" />
+    {% block csshead %}
+    <link href="{{ url_for('static', v=settings.RELEASE, filename='css/jackedup.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', v=settings.RELEASE, filename='css/uikit.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', v=settings.RELEASE, filename='css/simple-map-d3.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', v=settings.RELEASE, filename='css/style.css') }}" rel="stylesheet" />
+    {% endblock %}
+    {% block jshead %}
+    <script src="{{ url_for('static', v=settings.RELEASE, filename='js/prefixfree.min.js') }}"></script>
+    {% endblock %}
+  </head>
+  <body {% block body_attributes %}{% endblock %}>
+    {% block navbar %}
+    <nav class="uk-navbar mm-navbar">
+      <a class="uk-navbar-brand" href="{{ url_for('.index') }}">
+        <i class="uk-icon-book uk-icon-large"> &nbsp; </i>
+Markment.IO</a>
+        {% block nav  %}
+        {% endblock %}
+
+      <div class="uk-navbar-flip">
+        <ul class="uk-navbar-nav">
+            {% if github_user %}
+            <li>
+              <a href="#"><img src="{{ github_user.avatar_url }}" width="40" /> {{ github_user.login }}</a>
+            </li>
+            <li>
+              <a href="{{ url_for('.logout') }}">
+                <i class="uk-icon-signout uk-icon-medium">&nbsp</i>logout</a>
+            </li>
+            {% else %}
+                      <li>
+            <a href="{{ url_for('.login') }}"><i class="uk-icon-github-alt"></i> Sign in with Github</a>
+          </li>
+
+            {% endif %}
+        </ul>
+      </div>
+    </nav>
+    {% endblock %}
+    {% block main %}
+      {% endblock %}
+      <div class="uk-grid footer">
+        <div class="uk-container uk-container-center uk-text-center">
+	  <ul class="uk-subnav uk-subnav-line">
+	    <li><h1>Markment.IO</h1></li>
+	  </ul>
+	  <ul class="uk-subnav uk-subnav-line">
+	    <li><a href="http://github.com/gabrielfalcao">Github</a></li>
+	    <li><a href="http://twitter.com/gabrielfalcao">Twitter</a></li>
+            {% if settings and settings.PRODUCTION %}
+            <li><img src="https://instanc.es/bin/gabrielfalcao/dop.png" width="95" height="18" /></li>
+            {% endif %}
+	  </ul>
+	  <div class="uk-panel">
+	    <p>&copy; Copyright 2013 Markment.IO</p>
+	    <p>Made with &hearts; in Brooklyn</p>
+	  </div>
+        </div>
+      </div>
+    {% block jsbottom %}
+      <script src="{{ url_for('static', v=settings.RELEASE, filename='js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', v=settings.RELEASE, filename='js/uikit.min.js') }}"></script>
+      <script src="{{ url_for('static', v=settings.RELEASE, filename='js/angular.min.js') }}"></script>
+      <script src="{{ url_for('static', v=settings.RELEASE, filename='js/socket.io.min.js') }}"></script>
+      <script src="{{ url_for('static', v=settings.RELEASE, filename='js/humane.min.js') }}"></script>
+    {% endblock %}
+  </body>
+</html>

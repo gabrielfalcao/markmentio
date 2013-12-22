@@ -1,0 +1,38 @@
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+sdist
+build
+eggs
+develop-eggs
+
+# Installer logs
+pip-log.txt
+build.log
+.coverage
+.DS_Store
+
+.tox
+/merchants/settings.py
+/merchants/static/.sass-cache
+/merchants/static/.webassets-cache
+/merchants/static/webassets-external
+/merchants/static/sprites
+/merchants/static/css
+/modules/
+/data/db.sqlite
+cache.sqlite
+#*
+.#*
+#.*
+*#*
+markment
+production-dump.sql
+MANIFEST
+yipitdocs/static/docs

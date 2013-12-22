@@ -1,0 +1,10 @@
+split
+split
+split
+screen tail -f /var/log/supervisor/http-stderr.log
+focus down
+screen tail -f /var/log/supervisor/http-stdout.log
+focus down
+screen tail -f /var/log/supervisor/workers-stderr.log
+focus down
+screen tail -f /var/log/supervisor/workers-stdout.log

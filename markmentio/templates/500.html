@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block csshead %}
+<link href="{{ url_for('static', filename='css/uikit.min.css') }}" rel="stylesheet" />
+<link href="{{ url_for('static', filename='css/simple-map-d3.css') }}" rel="stylesheet" />
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block jshead %}
+<script src="{{ url_for('static', filename='js/prefixfree.min.js') }}"></script>
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+{% block main %}
+<br />
+<br />
+<br />
+<br />
+
+<div class="main uk-grid">
+  <div class="uk-width-1-1">
+    <article class="uk-article uk-container uk-container-center uk-text-center">
+      <h1 class="uk-article-title"><i class="uk-icon-fire uk-icon-large"> &nbsp; </i></h1>
+      <h1 class="uk-article-title">Server Error</h1>
+      <h2>{{ exception }}</h2>
+      <pre>{{ traceback }}</pre>
+    </article>
+  </div>
+</div>
+{% endblock %}
+    {% block jsbottom %}
+      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/uikit.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/angular.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/socket.io.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/jquery.tipsy.js') }}"></script>
+    {% endblock %}

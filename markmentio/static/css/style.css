@@ -1,0 +1,200 @@
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+@import url(http://fonts.googleapis.com/css?family=Delius+Swash+Caps);
+
+.mm-navbar {
+  padding: 18px 0;
+}
+.mm-navbar .uk-navbar-brand {
+  font-size: 32px;
+}
+.mm-navbar i {
+  font-size: 18px;
+  padding: 1px 2px 0 2px;
+}
+*,
+body,
+html,
+.article,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+strong,
+a,
+li,
+ul,
+ol,
+nav {
+  font-family: "Source Sans Pro";
+}
+
+
+.main {
+  min-height: 100%;
+  padding-bottom:200px;
+  margin-bottom: -200px;
+}
+.main:after {
+  content: "";
+  display: block;
+}
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
+
+.uk-grid.footer {
+  background: #484848;
+  width: 100%;
+  padding-top: 20px;
+  float: left;
+  color: white;
+  margin:0;
+  height: 180px;
+}
+
+.uk-grid.footer a,.uk-grid.footer h1 {
+  color: white;
+}
+
+textarea.pre {
+  font-family: "Monaco", "Inconsolata", "monospace";
+  font-size: 12px;
+}
+
+.sidebar-parent {
+  position: relative;
+}
+.sidebar {
+  border-right: 1px solid #bdbdbd;
+  height: 100%;
+  width: 190px;
+}
+
+.sidebar .nav {
+  list-style-type: none;
+  margin-left: -20px;
+  margin-top: 0;
+}
+
+.sidebar .nav li {
+  background-color: #F0F0F0;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$lightColor , endColorstr=$darkColor);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#DBDBDB));
+  background-image: -moz-linear-gradient(top, #F0F0F0, #DBDBDB);
+  background-image: -o-linear-gradient(top, #F0F0F0, #DBDBDB);
+  background-image: linear-gradient(top, #F0F0F0, #DBDBDB);
+  border-bottom: 1px solid #BDBDBD;
+  border-top: 1px solid white;
+  height: 42px;
+  line-height: 42px;
+  margin-left: -20px;
+}
+
+.sidebar .nav li:last-child {
+  webkit-box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.1);
+  moz-box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav li a {
+  color: #616161;
+  display: block;
+  margin-left: 8px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.sidebar .nav li.active {
+  border-top: 1px solid #1768B9;
+  border-bottom: 1px solid #0C2D49;
+  webkit-box-shadow: inset 0px 1px 0px 0 rgba(255, 255, 255, 0.2);
+  moz-box-shadow: inset 0px 1px 0px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0px 1px 0px 0 rgba(255, 255, 255, 0.2);
+  background-color: #5FAEDF;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$lightColor , endColorstr=$darkColor);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5FAEDF), to(#4889B4));
+  background-image: -moz-linear-gradient(top, #5FAEDF, #4889B4);
+  background-image: -o-linear-gradient(top, #5FAEDF, #4889B4);
+  background-image: linear-gradient(top, #5FAEDF, #4889B4);
+  position: relative;
+}
+
+.sidebar .nav li.active::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 20px;
+  z-index: -1;
+  moz-transform: rotate(62deg) skew(30deg);
+  webkit-transform: rotate(62deg) skew(30deg);
+  transform: rotate(62deg) skew(30deg);
+  margin-top: -32px;
+  margin-left: 188px;
+  background: #5FAEDF;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$lightBlue , endColorstr=$darkBlue);
+  background: -webkit-gradient(linear, left top, right bottom, from(#5FAEDF), to(#4889B4));
+  background: -moz-linear-gradient(-45deg, #5FAEDF, #4889B4);
+  background: -o-linear-gradient(-45deg, #5FAEDF, #4889B4);
+  background: linear-gradient(-45deg, #5FAEDF, #4889B4);
+  border-top: 1px solid #1D6CAF;
+  border-right: 1px solid #0C2D49;
+  webkit-box-shadow: inset 0px 1px 0px 0 rgba(255, 255, 255, 0.2);
+  moz-box-shadow: inset 0px 1px 0px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0px 1px 0px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .nav li.active a {
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.live-stats {
+  width: 100%;
+  height: 300px;
+}
+.live-stats .left {
+  z-index: 100000;
+  float: left;
+}
+.live-stats .right {
+  float: right;
+  z-index: 100000;
+
+}
+
+svg.map {
+  clear: both;
+  margin-top: -200px;
+}
+path.country {
+  fill: rgba(183,183,183,1);
+}
+svg.map path.below10 {
+  fill: rgba(183,183,183,.3);
+}
+svg.map path.below100 {
+  fill: #EDF8B1;
+}
+svg.map path.below1000 {
+  fill: #7FCDBB;
+}
+svg.map path.below10000 {
+  fill: #2C7FB8;
+}
+svg.map path.above10000 {
+  fill: #0E4C78;
+}
+object {
+  display:none;
+  height:0;
+  width:0;
+}

@@ -1,0 +1,21 @@
+<h1 ng-show="repositories['{{ org.login }}']">{{ org.login }} repositories</h1>
+
+<table class="uk-table uk-text-large uk-table-hover uk-table-striped uk-table-condensed" ng-show="repositories['{{ org.login }}']">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="repository in repositories['{{ org.login }}']">
+      {% raw %}
+      <td>{{ repository.name }}</td>
+      <td class="row" data-full-name="{{ repository.full_name }}" >
+        <button type="button" ng-show="repository.not_ready" class="uk-button uk-button-success" ng-click="CreateHook(repository)">Create Hook</button>
+        <code ng-show="repository.ready" ng-if="repository.ready">{{ repository.ready.url }}</code>
+      </td>
+      {% endraw %}
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block body_attributes %}ng-controller="DashboardController" data-socketaddress="{{ settings.SCHEMA }}{{ settings.DOMAIN }}" {% endblock %}
+
+{% block nav %}
+<ul class="uk-navbar-nav uk-text-large" data-uk-switcher="{connect:'#panes'}">
+  <li {% if not docs_found %}class="uk-active"{% endif %}><a href="#howto" >How to use it</a></li>
+  <li><a href="#log" >Live Build Log</a></li>
+  <li {% if docs_found %}class="uk-active"{% endif %}><a href="#available" >Available Docs</a></li>
+  {% for org in organizations %}
+  <li><a href="#{{ org.login }}pane" ng-click="SelectOrganizationTab('{{ org.login }}')">{{ org.login }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block main %}
+<object id="socket-meta"
+        data-username="{{ github_user.login }}"></object>
+<object id="dashboard-meta"
+        project="{login}-PLACEHOLDER".format(**github_user)) }}"
+        data-create-hook-ajax-url="{{ url_for(".create_hook") }}"
+        data-context-ajax-url="{{ url_for(".ajax_dashboard_repo_list", owner="PLACEHOLDER") }}"></object>
+
+<div class="main uk-grid">
+  <div class="uk-width-1-1">
+    <article class="uk-article uk-container uk-container-center">
+      <hr />
+
+      <!-- This is the container of the content items -->
+      <ul id="panes" class="uk-switcher">
+        <li id="howto">
+          <h1>Simple steps to publish documentation for a project</h1>
+          <h2>1. Install markment and write markdown</h2>
+
+          <a href="http://falcao.it/markment">Markment</a> is a tool
+          that automatically finds markdown files recursively inside
+          of a directory tree, it's really simple and you can get go
+          from no documentation to something magically pretty with a
+          few steps
+
+          <hr />
+
+          <h2>2. Make sure to create the <em>.markment.yml</em> metadata file</h2>
+          Markment.IO uses the <a href="http://falcao.it/markment/configuring.html">markment metadata file</a> to
+          find where your docs are.
+
+          You can also set a list of relative paths to documentation
+          under the "toc" key, that will define the order that the
+          table of context is rendered.
+
+          <h3>Here is an example from the "lettuce" project:</h3>
+
+<pre>
+project:
+  name: "lettuce"
+  version: 0.2.7
+  description: Leverages the chef api with fabric
+  tagline: Chef + Fabric = Lettuce
+  github_maintainer: gabrielfalcao
+  github_maintainer_name: Gabriel Falc&atilde;o
+
+  github_url: http://github.com/gabrielfalcao/lettuce
+  documentation_url: http://markment.io/lettuce
+  support_url: http://github.com/gabrielfalcao/lettuce/issues
+  full_index: false
+
+documentation:
+  index: introduction.md
+
+toc:
+  - introduction.md
+  - configuring.md
+  - reference-api.md
+  - reference-core.md
+</pre>
+
+          <hr />
+
+          <h2>3. Enable the hook</h2>
+          Go the the tab above that represents a github organization
+          that contains the repository you wish to have the
+          documentation discovered and published.
+
+          Find the repository and click on "Create Hook", it will generate a link that you <strong>MUST</strong> use
+          as post-receive hook.
+
+          <hr />
+          <h2>4. Congratulations!             <i class="uk-icon-large uk-icon-heart"></i></h2>
+
+          Next time you push to that repository the docs will be automatically generated and published here.
+
+        </li>
+        <li id="log">
+          <h1>Live build log</h1>
+          <p class="uk-text-large">Live stream of what the workers are doing</p>
+          <pre id="console" style="max-height: 800px;overflow-y:auto;padding:0;">
+          </pre>
+        </li>
+        <li id="available">
+          <div class="uk-grid">
+            <div class="uk-width-1-1">
+              <h1>Available Docs</h1>
+              {% if not docs_found %}
+              <h1>There are currently no documentation for any project</h1>
+              <p>Choose your ornanization above and create a hook for your project</p>
+              {% endif %}
+
+              {% if docs_found %}
+              <table class="uk-table uk-table-hover">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>URL</th>
+                  </tr>
+                </thead>
+                <tbody>
+              {% for name, info in docs_found.items() %}
+                  <tr>
+                    <td>{{ name }}</td>
+                    <td><a href="{{ info['bucket']['url'] }}">{{ info['bucket']['url'] }}</a></td>
+                  </tr>
+              {% endfor %}
+                </tbody>
+              </table>
+              {% endif %}
+
+            </div>
+          </div>
+        </li>
+
+        {% for org in organizations %}
+        <li id="pane-{{ org.login }}">
+          <div class="uk-grid uk-text-center ajax-loader {{ org.login }}">
+            <div class="uk-width-1-1">
+              <h1>loading...</h1>
+              <i class="uk-icon-time uk-icon-large uk-icon-spin"></i>
+            </div>
+          </div>
+          {% include "./dashboard/list-repositories.html" %}
+        </li {#id="list-repositories"#}>
+        {% endfor %}
+      </ul>
+    </article>
+  </div>
+</div>
+{% endblock %}
+
+{% block jsbottom %}
+  {{ super() }}
+  <script src="{{ url_for('static', v=settings.RELEASE, filename='js/d3.min.js') }}"></script>
+  <script src="{{ url_for('static', v=settings.RELEASE, filename='js/nvd3.min.js') }}"></script>
+  <script src="{{ url_for('static', v=settings.RELEASE, filename='js/controllers.dashboard.js') }}"></script>
+{% endblock %}
